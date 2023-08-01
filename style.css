@@ -1,7 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  font-family: "Red Hat Display", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr 85%;
+  grid-template-areas: "title title" "stats stats" "content content";
+  gap: 20px;
+}
+.container header {
+  grid-area: title;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.container header i {
+  font-size: 23px;
+}
+
+.stats {
+  grid-area: stats;
+  text-align: center;
+}
+.stats div {
+  margin: 5px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.stats p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stats span {
+  font-weight: 700;
+}
+
+.library {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  padding: 15px;
+  border-top: 1px solid red;
+}
+
+.book {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(350px, 2fr) 1fr 1fr;
+  max-height: 500px;
+  max-width: 350px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+.book .info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+}
+.book .info p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.book .info span {
+  font-weight: 700;
+}
+.book .options {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: skyblue;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+.book .options div:first-child {
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.book .options button {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  background-color: transparent;
+  border: 0;
+  border-left: 1px dashed rgba(0, 0, 0, 0.2);
+}
+.book .image {
+  position: relative;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.book .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.book .image h3 {
+  position: absolute;
+  height: 50px;
+  font-size: 30px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /*# sourceMappingURL=style.css.map */
