@@ -17,6 +17,9 @@ Library.prototype.changeBookStatus = function(book) {
         book.status = 'Unread';
     }
     document.querySelector(`button[data-title="${book.title}"].status`).innerText = book.status;
+    const bookContainer = document.querySelector(`div[data-title="${book.title}"].book`);
+    bookContainer.classList.remove('unread','read','reading');
+    bookContainer.classList.add(book.status.toLowerCase());
     library.updateBooksStats();
 }
 Library.prototype.deleteBook = function(book) {
@@ -54,6 +57,7 @@ Library.prototype.addBookToView = function(book) {
     
     // Properties
     bookContainer.classList.add('book');
+    bookContainer.classList.add(book.status.toLowerCase());
     bookContainer.setAttribute('data-title',book.title);
     bookImageContainer.classList.add('image');
     bookImage.src = book.url ?? './assets/default.jpg';
@@ -61,7 +65,7 @@ Library.prototype.addBookToView = function(book) {
     bookTitle.innerText = book.title;
 
     bookInfoContainer.classList.add('info');
-    bookAuthorContainer.innerHTML = `<span>Author</span>${book.author}`;
+    bookAuthorContainer.innerHTML = `<span>Author</span>${book.author.length > 25 ? book.author.slice(0,20) + '...' : book.author}`;
     bookPagesContainer.innerHTML = `<span>Pages</span>${book.pages}`;
 
     bookOptionsContainer.classList.add('options');
@@ -186,8 +190,8 @@ document.getElementById('library').addEventListener('click', function(e) {
         : library.deleteBook(book);
 })
 
-library.addBookToLibrary(new Book('Eloquent JavaScript', 'Marijin Haverbeke', 17, 'Unread', 'https://eloquentjs-es.thedojo.mx/img/cover.jpg'))
-library.addBookToLibrary(new Book('Kimetsu no Yaiba', 'Koyoharu Gotōge', 23, 'Reading', 'https://i.pinimg.com/736x/e0/51/9a/e0519a6134d90926021cc40269cae405.jpg'))
+library.addBookToLibrary(new Book('Eloquent JavaScript', 'Marijin Haverbeke', 17, 'Reading', 'https://eloquentjs-es.thedojo.mx/img/cover.jpg'))
+library.addBookToLibrary(new Book('Kimetsu no Yaiba', 'Koyoharu Gotōge', 23, 'Read', 'https://i.pinimg.com/736x/e0/51/9a/e0519a6134d90926021cc40269cae405.jpg'))
 library.addBookToLibrary(new Book('Default', 'Unknown', 999, 'Unread'))
 
 library.showBooks();

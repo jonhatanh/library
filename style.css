@@ -1,4 +1,14 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700&display=swap");
+:root {
+  --primary: #a855f7;
+  --secondary: #6d28d9;
+  --cards-background: #f5f3ff;
+  --text-white: white;
+  --text-black: black;
+  --background: #f0fdfa;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,6 +20,7 @@ body {
   display: flex;
   font-family: "Red Hat Display", sans-serif;
   padding-bottom: 70px;
+  background-color: var(--background);
 }
 
 button {
@@ -65,18 +76,53 @@ button {
   gap: 30px;
   justify-items: center;
   padding: 15px;
-  border-top: 1px solid red;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .book {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: minmax(350px, 2fr) 1fr 1fr;
   max-height: 500px;
   max-width: 350px;
   border-radius: 20px;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  transition: 0.3s all;
+}
+.book::after {
+  content: "⭐";
+  position: absolute;
+  top: 0px;
+  right: 0;
+  font-size: 25px;
+}
+.book.unread {
+  opacity: 0.7;
+}
+.book.unread::after {
+  content: "📕";
+  position: absolute;
+  top: 0px;
+  right: 0;
+  font-size: 25px;
+}
+.book.read {
+  box-shadow: 0px 0px 10px 4px rgba(168, 85, 247, 0.3);
+}
+.book.read:hover {
+  box-shadow: 0px 0px 15px 6px rgba(168, 85, 247, 0.3);
+}
+.book.reading::after {
+  content: "📖";
+  position: absolute;
+  top: 0px;
+  right: 0;
+  font-size: 25px;
+}
+.book.reading:hover, .book.unread:hover {
+  box-shadow: 0px 0px 15px 6px rgba(0, 0, 0, 0.3);
 }
 .book .info {
   display: flex;
@@ -84,6 +130,7 @@ button {
   align-items: center;
   justify-content: space-around;
   gap: 10px;
+  background-color: var(--cards-background);
 }
 .book .info p {
   display: flex;
@@ -97,7 +144,7 @@ button {
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  background-color: skyblue;
+  background-color: var(--primary);
   color: white;
   font-size: 16px;
   font-weight: 700;
@@ -115,7 +162,7 @@ button {
   transition: 0.3s all;
 }
 .book .options button:hover {
-  background-color: aqua;
+  background-color: var(--secondary);
 }
 .book .image {
   position: relative;
@@ -140,6 +187,7 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
+  word-break: break-word;
 }
 
 .bottom-bar {
@@ -154,7 +202,7 @@ button {
   align-items: center;
 }
 .bottom-bar button {
-  background-color: skyblue;
+  background-color: var(--primary);
   padding: 10px 20px;
   border: none;
   border-radius: 20px;
@@ -165,7 +213,7 @@ button {
   transition: 0.3s all;
 }
 .bottom-bar button:hover {
-  background-color: gray;
+  background-color: var(--secondary);
 }
 
 .modal {
@@ -181,7 +229,7 @@ button {
 }
 .modal form {
   display: none;
-  background-color: white;
+  background-color: var(--background);
   padding: 20px;
   border-radius: 10px;
   width: min(95%, 350px);
@@ -212,7 +260,7 @@ button {
   border-right: 1px solid rgba(0, 0, 0, 0.3);
 }
 .modal fieldset button {
-  background-color: skyblue;
+  background-color: var(--primary);
   padding: 10px 20px;
   border: none;
   border-radius: 20px;
@@ -223,13 +271,13 @@ button {
   transition: 0.3s all;
 }
 .modal fieldset button#closeModalBtn {
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.7);
 }
 .modal fieldset button#closeModalBtn:hover {
   background-color: black;
 }
 .modal fieldset button:hover {
-  background-color: gray;
+  background-color: var(--secondary);
 }
 .modal .form-item {
   display: flex;
