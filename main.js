@@ -9,7 +9,7 @@ Library.prototype.addBookToLibrary = function(book) {
     return (this.books.push(book) - 1);
 }
 Library.prototype.showBooks = function() {
-    this.books.forEach(book => this.addBookToView(book));
+    this.books.forEach(book => !book.onScreen && this.addBookToView(book));
 }
 Library.prototype.addBookToView = function(book) {
     //Definitions
@@ -28,6 +28,7 @@ Library.prototype.addBookToView = function(book) {
     
     // Properties
     bookContainer.classList.add('book');
+    bookContainer.setAttribute('data-name',book.title);
     bookImageContainer.classList.add('image');
     bookImage.src = book.url ?? './assets/default.jpg';
     bookImage.alt = 'Book Photo';
@@ -40,6 +41,7 @@ Library.prototype.addBookToView = function(book) {
     bookOptionsContainer.classList.add('options');
     bookStatusButton.innerText = book.status;
     bookDeleteButton.innerText = 'Delete';
+    bookDeleteButton.setAttribute('data-name',book.title);
 
     //DOM
     bookImageContainer.appendChild(bookImage);
@@ -103,7 +105,32 @@ modal.addEventListener('animationend', (e) => {
     modal.classList.remove('hidde');
     bookForm.classList.remove('hidde');
 })
-
+bookForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = getFormData(e.target);
+    
+    const newBook = new Book(
+        formData.title,
+        formData.author,
+        formData.pages,
+        formData.status,
+        formData.cover,
+        )
+    console.log(formData);
+    e.target.reset();
+    library.addBookToLibrary(newBook);
+    library.showBooks();
+})
+function getFormData(form) {
+    const data = {
+        title: form.title.value.trim(),
+        author: form.author.value.trim(),
+        pages: form.pages.value,
+        status: form.status.value,
+        cover: form.cover.value.trim() == "" ? null : form.cover.value.trim(),
+    }
+    return data;
+}
 
 
 

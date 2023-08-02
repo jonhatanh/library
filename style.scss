@@ -267,6 +267,18 @@ button {
             font-family: inherit;
         }
     }
+
+    &.show {
+        display: flex;
+        animation: openModal 0.5s ease-out;
+        // animation-name: openModal;
+        // animation-duration: 0.5s;
+        // animation-timing-function: ease-out;
+    }
+    &.hidde {
+        animation: closeModal 0.3s forwards ease-out;
+    }
+    
 }
 
 @keyframes openModal {
@@ -300,16 +312,6 @@ button {
     to {
         transform: scale(0%);
     }
-}
-.modal.show {
-    display: flex;
-    animation: openModal 0.5s ease-out;
-    // animation-name: openModal;
-    // animation-duration: 0.5s;
-    // animation-timing-function: ease-out;
-}
-.modal.hidde {
-    animation: closeModal 0.5s forwards ease-out;
 }
 
 

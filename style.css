@@ -239,6 +239,13 @@ button {
   font-size: inherit;
   font-family: inherit;
 }
+.modal.show {
+  display: flex;
+  animation: openModal 0.5s ease-out;
+}
+.modal.hidde {
+  animation: closeModal 0.3s forwards ease-out;
+}
 
 @keyframes openModal {
   from {
@@ -271,14 +278,6 @@ button {
   to {
     transform: scale(0%);
   }
-}
-.modal.show {
-  display: flex;
-  animation: openModal 0.5s ease-out;
-}
-
-.modal.hidde {
-  animation: closeModal 0.5s forwards ease-out;
 }
 
 /*# sourceMappingURL=style.css.map */
