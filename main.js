@@ -3,16 +3,13 @@ function Library() {
     this.books = [];
 }
 
-
 Library.prototype.container = document.getElementById('library');
 //Returns index
 Library.prototype.addBookToLibrary = function(book) {
     return (this.books.push(book) - 1);
 }
 Library.prototype.showBooks = function() {
-
-    this.books.forEach(book => !book.onScreen && this.addBookToView(book));
-
+    this.books.forEach(book => this.addBookToView(book));
 }
 Library.prototype.addBookToView = function(book) {
     //Definitions
@@ -30,7 +27,6 @@ Library.prototype.addBookToView = function(book) {
     const bookDeleteButton = document.createElement('button');
     
     // Properties
-
     bookContainer.classList.add('book');
     bookImageContainer.classList.add('image');
     bookImage.src = book.url ?? './assets/default.jpg';
@@ -85,7 +81,37 @@ Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.status}`;
 }
 
+const modal = document.getElementById('modal');
+const bookForm = document.getElementById('bookForm');
+const openModalBtn = document.getElementById('openModalBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
+openModalBtn.addEventListener('click', (e)=> {
+    modal.classList.add('show');
+    bookForm.classList.add('show');
+})
+closeModalBtn.addEventListener('click', (e)=> {
+    // modal.classList.remove('show');
+    modal.classList.add('hidde');
+    // bookForm.classList.remove('show');
+    bookForm.classList.add('hidde');
+})
+modal.addEventListener('animationend', (e) => {
+    console.log(e);
+    if(e.animationName !== 'closeModal') return;
+    modal.classList.remove('show');
+    bookForm.classList.remove('show');
+    modal.classList.remove('hidde');
+    bookForm.classList.remove('hidde');
+})
+
+
+
+
+
+
+
 const library = new Library();
+
 
 library.addBookToLibrary(new Book('Eloquent JavaScript', 'Marijin Haverbeke', 17, 'Unread', 'https://eloquentjs-es.thedojo.mx/img/cover.jpg'))
 library.addBookToLibrary(new Book('Kimetsu no Yaiba', 'Koyoharu Gotōge', 23, 'Reading', 'https://i.pinimg.com/736x/e0/51/9a/e0519a6134d90926021cc40269cae405.jpg'))

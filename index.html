@@ -40,6 +40,46 @@
                 </div>
             </div> -->
         </div>
+        <div class="bottom-bar">
+            <button id="openModalBtn">Add Book</button>
+        </div>
+        <div class="modal" id="modal">
+            <form id="bookForm">
+                <fieldset>
+                    <legend>Book Information</legend>
+                    <div class="form-item">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" minlength="1" maxlength="99" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="author">Author</label>
+                        <input type="text" name="author" id="author" minlength="1" maxlength="99" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="pages">Pages</label>
+                        <input type="number" name="pages" id="pages" min="0" max="9999" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="pages">Book Status</label>
+                        <select name="status" id="status" required>
+                            <option value="Unread">Unread</option>
+                            <option value="Read">Read</option>
+                            <option value="Reading">Reading</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label for="cover">Book Cover URL</label>
+                        <input type="url" name="cover" id="cover">
+                    </div>
+                    <div class="form-item">
+                        <button id="addBookBtn" type="submit">Add</button>
+                    </div>
+                    <div class="form-item">
+                        <button id="closeModalBtn" type="button">Cancel</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
 
     </div>
 

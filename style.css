@@ -6,9 +6,10 @@
 }
 
 body {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
   display: flex;
   font-family: "Red Hat Display", sans-serif;
+  padding-bottom: 70px;
 }
 
 button {
@@ -138,6 +139,146 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.bottom-bar {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.2);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottom-bar button {
+  background-color: skyblue;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  transition: 0.3s all;
+}
+.bottom-bar button:hover {
+  background-color: gray;
+}
+
+.modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal form {
+  display: none;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: min(95%, 350px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+}
+.modal form.show {
+  display: block;
+  animation-name: openForm;
+  animation-duration: 0.3s;
+}
+.modal form.hidde {
+  animation: closeForm 0.3s forwards ease-out;
+}
+.modal fieldset {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+.modal fieldset legend {
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  padding: 0 6px;
+  border-left: 1px solid rgba(0, 0, 0, 0.3);
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+.modal fieldset button {
+  background-color: skyblue;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  transition: 0.3s all;
+}
+.modal fieldset button#closeModalBtn {
+  background-color: red;
+}
+.modal fieldset button#closeModalBtn:hover {
+  background-color: black;
+}
+.modal fieldset button:hover {
+  background-color: gray;
+}
+.modal .form-item {
+  display: flex;
+  flex-direction: column;
+}
+.modal .form-item input, .modal .form-item select {
+  padding: 5px 3px;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+@keyframes openModal {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+@keyframes openForm {
+  from {
+    transform: scale(25%);
+  }
+  to {
+    transform: scale(100%);
+  }
+}
+@keyframes closeModal {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes closeForm {
+  from {
+    transform: scale(100%);
+  }
+  to {
+    transform: scale(0%);
+  }
+}
+.modal.show {
+  display: flex;
+  animation: openModal 0.5s ease-out;
+}
+
+.modal.hidde {
+  animation: closeModal 0.5s forwards ease-out;
 }
 
 /*# sourceMappingURL=style.css.map */
