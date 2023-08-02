@@ -3,6 +3,10 @@ function Library() {
     this.books = [];
 }
 Library.prototype.container = document.getElementById('library');
+Library.prototype.booksRead = document.getElementById('booksRead');
+Library.prototype.booksReading = document.getElementById('booksReading');
+Library.prototype.booksUnread = document.getElementById('booksUnread');
+Library.prototype.booksTotal = document.getElementById('booksTotal');
 
 Library.prototype.changeBookStatus = function(book) {
     if(book.status.toLowerCase() === 'unread') {
@@ -12,12 +16,14 @@ Library.prototype.changeBookStatus = function(book) {
     } else {
         book.status = 'Unread';
     }
-    document.querySelector(`button[data-title="${book.title}"].status`).innerText = book.status
+    document.querySelector(`button[data-title="${book.title}"].status`).innerText = book.status;
+    library.updateBooksStats();
 }
 Library.prototype.deleteBook = function(book) {
     const bookIndex = this.books.indexOf(book);
     this.books.splice(bookIndex, 1);
     document.querySelector(`div[data-title="${book.title}"].book`).remove();
+    library.updateBooksStats();
 }
 Library.prototype.getBookByTitle = function(bookTitle) {
     return this.books.find(book => book.title === bookTitle)
@@ -26,6 +32,7 @@ Library.prototype.getBookByTitle = function(bookTitle) {
 //Returns index
 Library.prototype.addBookToLibrary = function(book) {
     this.books.push(book);
+    library.updateBooksStats();
 }
 Library.prototype.showBooks = function() {
     this.books.forEach(book => !book.onScreen && this.addBookToView(book));
@@ -151,8 +158,19 @@ function getFormData(form) {
     }
     return data;
 }
-
-
+Library.prototype.qtyBooksByStatus = function(bookStatus) {
+    return this.books.filter(book => book.status === bookStatus).length;
+}
+Library.prototype.updateBooksStats = function() {
+    const totalBooks = this.books.length;
+    const readBooks = this.qtyBooksByStatus('Read');
+    const readingBooks = this.qtyBooksByStatus('Reading');
+    const unreadBooks = totalBooks - readBooks - readingBooks;
+    this.booksRead.textContent = readBooks;
+    this.booksReading.textContent = readingBooks;
+    this.booksUnread.textContent = unreadBooks;
+    this.booksTotal.textContent = totalBooks;
+}
 
 
 
@@ -173,3 +191,4 @@ library.addBookToLibrary(new Book('Kimetsu no Yaiba', 'Koyoharu Gotōge', 23, 'R
 library.addBookToLibrary(new Book('Default', 'Unknown', 999, 'Unread'))
 
 library.showBooks();
+library.updateBooksStats();
