@@ -94,13 +94,6 @@ Library.prototype.addBookToView = function(book) {
     
     this.container.appendChild(bookContainer);
 }
-// Library.prototype.bookStatusString = function(book) {
-//     const status = {
-//         read: 'read',
-//         unread: 'unread',
-
-//     }
-// }
 
 
 function Book(title, author, pages, status, url = null) {
@@ -147,7 +140,6 @@ bookForm.addEventListener('submit', (e) => {
         formData.status,
         formData.cover,
         )
-    console.log(formData);
     e.target.reset();
     library.addBookToLibrary(newBook);
     library.showBooks();
@@ -176,11 +168,7 @@ Library.prototype.updateBooksStats = function() {
     this.booksTotal.textContent = totalBooks;
 }
 
-
-
 const library = new Library();
-console.log(library);
-
 
 document.getElementById('library').addEventListener('click', function(e) {
     if(e.target.tagName !== 'BUTTON') return;
