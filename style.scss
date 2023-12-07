@@ -313,7 +313,22 @@ button {
             padding: 5px 3px;
             font-size: inherit;
             font-family: inherit;
+
+            &:invalid {
+                border-color: #999;
+                background-color: rgb(255, 230, 230);
+            }
+            &:focus:invalid {
+                outline: none;
+            }
         }
+    }
+
+    .error {
+        color: #900;
+        text-align: center;
+        margin-top: 2px;
+        border-radius: 0px 0px 5px 5px;
     }
 
     &.show {
